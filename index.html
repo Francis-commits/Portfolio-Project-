@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar Styling (Kept) */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #2a2a2a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; border: 2px solid #2a2a2a; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffd166; }
+
+        /* Sticky Navigation Bar */
+        .navbar {
+            background: linear-gradient(90deg, #1f1f1f 0%, #303030 100%);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo {
+            color: #ffd166;
+            font-family: 'Montserrat', sans-serif;
+            /* LOGO SIZE ADJUSTMENT: Changed from 1.8em to 1.4em */
+            font-size: 1.4em; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- Main Page/Hero Section --- */
+        .main-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+        }
+        .hero {
+            position: relative;
+            padding: 80px 30px;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+            width: 100%;
+            max-width: 900px;
+            overflow: hidden;
+        }
+        .hero::before { 
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM0NjQ2NDYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMjAgMTEuMDk3di45MDNoLTEwdjItMkgwdjIuOTAzaDIwVjExLjA5N3pNMCgwdjQuOTAzaDIwdjItMjBIMHoiLz48L2c+PC9nPjwvc3ZnPg==');
+            opacity: 0.05;
+            z-index: -1;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4em;
+            color: #ffd166;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+        }
+        .hero p {
+            font-size: 1.4em;
+            color: #c0c0c0;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+        .group-pic img {
+            width: 100%;
+            max-width: 700px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            border: 4px solid #ffd166;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .group-pic img:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 20px 50px rgba(255, 209, 102, 0.6);
+        }
+        .meet-button {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #ffd166 0%, #e6b800 100%);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.4em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 209, 102, 0.4);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .meet-button:hover {
+            background: linear-gradient(45deg, #e6b800 0%, #ffd166 100%);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(255, 209, 102, 0.6);
+        }
+
+        /* --- Page Toggle Logic (CSS + JS) --- */
+        input[type="checkbox"]#page-toggle { display: none; }
+        
+        .member-list-page {
+            display: none; /* Initially hidden, controlled by JS/CSS Toggle */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            width: 100%;
+            padding-top: 50px;
+            display: flex; /* Use flex when visible */
+            flex-direction: row; 
+            align-items: flex-start; 
+            gap: 20px;
+            min-height: 80vh; 
+        }
+
+        /* CSS for the toggle state */
+        input#page-toggle:not(:checked) ~ .main-page {
+            display: flex;
+        }
+        input#page-toggle:checked ~ .main-page {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+            display: none;
+        }
+        input#page-toggle:checked ~ .member-list-page {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- List and Portfolio Containers --- */
+        .member-list-container {
+            width: 35%; 
+            padding-right: 15px;
+            border-right: 1px solid #333;
+            max-height: 80vh; 
+            overflow-y: auto; 
+        }
+        .portfolio-detail-container {
+            width: 65%; 
+            padding: 20px;
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            min-height: 70vh; 
+            position: relative; /* Container for absolute/stacked details */
+        }
+
+        /* Back Button (Adjusted position) */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #70a1ff 0%, #5c8ae8 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+        }
+        .back-button:hover {
+            background: linear-gradient(45deg, #5c8ae8 0%, #70a1ff 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Team Grid (Modified for List in Column) */
+        .team-grid {
+            display: flex;
+            flex-direction: column; 
+            gap: 15px;
+            margin-top: 50px; 
+        }
+        
+        /* Member Card for List (JS controls the active state) */
+        .member-card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+            padding: 15px 20px; 
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            text-align: left; 
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background 0.3s ease;
+            display: block;
+            border: 1px solid #444444;
+        }
+        .member-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(255, 209, 102, 0.3);
+            border: 1px solid #ffd166;
+            background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
+        }
+        .member-card.active {
+            background: linear-gradient(45deg, #ffd166 0%, #e6b800 100%); 
+            color: #1a1a1a;
+            border-color: #ffd166;
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 209, 102, 0.6);
+        }
+        .member-card.active h3 { color: #1a1a1a; }
+        .member-card.active p { color: #555555; }
+
+        .member-card h3 {
+            color: #ffd166;
+            margin: 0;
+            font-size: 1.4em; 
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: none;
+        }
+        .member-card p {
+            margin: 0;
+            color: #a0a0a0;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        /* --- Portfolio Detail Styling --- */
+        .portfolio-detail {
+            background: linear-gradient(135deg, #202020 0%, #303030 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            color: #e0e0e0;
+            border-top: 5px solid #ffd166;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            display: none; /* Hidden by default, absolute positioned to stack */
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: calc(100% - 40px);
+        }
+        /* JS adds the 'active' class to show the specific detail */
+        .portfolio-detail.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            position: static; /* Takes up space when active */
+        }
+
+        /* *** NEW: Flexbox container for picture and intro text *** */
+        .intro-content {
+            display: flex;
+            align-items: center; /* Vertically center image and text */
+            gap: 25px; /* Space between the image and text */
+            margin-bottom: 30px;
+            text-align: left; /* Align text to the left */
+        }
+        /* Style the image container within the flexbox */
+        .intro-picture-container {
+            flex-shrink: 0; /* Prevents the image from shrinking */
+            text-align: center;
+        }
+        /* Style the text content next to the image */
+        .intro-text-content {
+            flex-grow: 1; /* Allows the text to take up the remaining space */
+        }
+        /* Update the detail image for side-by-side layout */
+        .portfolio-detail img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0; /* Remove top/bottom margin */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border: 4px solid #ffd166;
+            object-fit: cover;
+            display: block;
+        }
+        /* Update the detail header alignment */
+        .portfolio-detail h3 {
+            text-align: center;
+        }
+        .role-badge { 
+            display: inline-block;
+            background: linear-gradient(45deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.95em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* Remaining detail styles */
+        .portfolio-detail h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #70a1ff;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid rgba(112, 161, 255, 0.3);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+        .portfolio-detail ul {
+            text-align: left;
+            margin: 15px auto;
+            padding-left: 30px;
+            color: #b0b0b0;
+            list-style: none;
+            max-width: 400px;
+        }
+        .portfolio-detail ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+        .portfolio-detail ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #ffd166;
+            font-size: 0.8em;
+            top: 2px;
+        }
+        .social-links {
+            margin-top: 30px;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 12px;
+            color: #ffd166;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.8em;
+        }
+        .social-links a:hover {
+            color: #70a1ff;
+            transform: scale(1.2);
+        }
+        
+        /* --- NEW: Initial Prompt Styling (Kept) --- */
+        .initial-prompt {
+            padding: 50px 20px;
+            text-align: center;
+            color: #a0a0a0;
+            border: 2px dashed #444;
+            border-radius: 10px;
+            margin-top: 50px;
+            background: #1f1f1f;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1; /* Default state */
+            transition: opacity 0.4s ease;
+        }
+        .initial-prompt h2 {
+            color: #ffd166;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Design Adjustments for Split View */
+        @media (max-width: 992px) {
+            .member-list-page { 
+                flex-direction: column; 
+            }
+            .member-list-container, .portfolio-detail-container {
+                width: 100%; 
+                border-right: none;
+                padding-right: 0;
+            }
+            .member-list-container {
+                max-height: 40vh; 
+                margin-bottom: 20px;
+            }
+            .portfolio-detail-container {
+                min-height: auto;
+            }
+            .portfolio-detail {
+                position: static; /* Reset absolute positioning on mobile */
+                width: 100%;
+                left: 0;
+                top: 0;
+            }
+            .portfolio-detail.active {
+                position: static; 
+            }
+            /* Stack the intro picture and text on smaller screens */
+            .intro-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .intro-text-content p {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">   Group 6 Portfolio</div>
+    </nav>
+    <div class="container">
+        <input type="checkbox" id="page-toggle">
+        
+        <div class="main-page">
+            <section class="hero">
+                <h1>Welcome to Our Group Portfolio</h1>
+                <p>Hello! We are Group 6. This webpage highlights our talented team members and what makes us unique.</p>
+            </section>
+            
+            <section class="group-pic">
+                <img src="group.jpeg" alt="Combined group photo of the team">
+            </section>
+            
+            <label for="page-toggle" class="meet-button">Meet Our Members</label>
+        </div>
+        
+        <div class="member-list-page">
+            <label for="page-toggle" class="back-button"><i class="fas fa-arrow-left"></i> Back</label>
+            
+            <div class="member-list-container">
+                <div class="team-grid">
+                    
+                    <div class="member-card" data-member-id="1">
+                        <h3>Francis C. Erosa</h3>
+                        <p>Leader</p>
+                    </div>
+                    
+                    <div class="member-card" data-member-id="2">
+                        <h3>Marc Simon D. Naoe</h3>
+                        <p>Member</p>
+                    </div>
+                    
+                    <div class="member-card" data-member-id="3">
+                        <h3>Francis Dispo</h3>
+                        <p>Member</p>
+                    </div>
+                    
+                    <div class="member-card" data-member-id="4">
+                        <h3>Sean Harry B. Cepedoza</h3>
+                        <p>Member</p>
+                    </div>
+
+                    <div class="member-card" data-member-id="5">
+                        <h3>Kian Ashley Caoile</h3>
+                        <p>Member</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="portfolio-detail-container">
+                
+                <div class="initial-prompt" id="initial-prompt">
+                    <h2>👈 Select a Member to View their Portfolio</h2>
+                    <p>Click any member's name from the list on the left to display their details here.</p>
+                </div>
+
+                <div class="portfolio-detail" id="portfolio-1">
+                    <h3>Francis C. Erosa</h3>
+                    <span class="role-badge">Leader</span>
+                    <div class="intro-content">
+                        <div class="intro-picture-container">
+                            <img src="erosa.jpeg" alt="Profile picture of Francis C. Erosa">
+                        </div>
+                        <div class="intro-text-content">
+                            <p>I'm Francis C. Erosa, and I'm here as the Team Leader for Group 6. I'm excited to lead our team, blending artistic passion with digital know-how to deliver a great portfolio.</p>
+                        </div>
+                    </div>
+                    <h4>My Hobbies, Interests, and Skills</h4>
+                    <ul>
+                        <li>Reading science fiction novels</li>
+                        <li>Painting</li>
+                        <li>Computer Literacy</li>
+                        <li>Music</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1ZdJSUAr8k/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/tantan__ig?igsh=NHBobnN0ZzZuYWl6" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@eros____0?_t=ZS-90z1MKrJ4qe&_r=1" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-detail" id="portfolio-2">
+                    <h3>Marc Simon D. Naoe</h3>
+                    <span class="role-badge">Member</span>
+                    <div class="intro-content">
+                        <div class="intro-picture-container">
+                            <img src="naoe.jpeg" alt="Profile picture of Marc Simon D. Naoe">
+                        </div>
+                        <div class="intro-text-content">
+                            <p>Hello, I'm Marc Simon D. Naoe, a dedicated Member of this group. This page represents who I am and what I'm passionate about as a contributor.</p>
+                        </div>
+                    </div>
+                    <h4>My Hobbies, Interests, and Skills</h4>
+                    <ul>
+                        <li>Basketball</li>
+                        <li>Listening to Music</li>
+                        <li>Playing Guitar</li>
+                        <li>Biking</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/marcsimon.naoe" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/agaisjvhi?igsh=N2lkamhmemtoMXk4&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@agaisjvh?is_from_webapp=1&sender_device=pc" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-detail" id="portfolio-3">
+                    <h3>Francis Dispo</h3>
+                    <span class="role-badge">Member</span>
+                    <div class="intro-content">
+                        <div class="intro-picture-container">
+                            <img src="dispo.jpeg" alt="Profile picture of Francis Dispo">
+                        </div>
+                        <div class="intro-text-content">
+                            <p>My name is Francis Dispo, and I serve as a committed Member. Feel free to explore my interests, from music to reading.</p>
+                        </div>
+                    </div>
+                    <h4>My Hobbies, Interests, and Skills</h4>
+                    <ul>
+                        <li>Playing Basketball</li>
+                        <li>Playing Guitar</li>
+                        <li>Singing</li>
+                        <li>Books</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1FwhPxvsjb/?mibextid=wwXIfr" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/frncsdspo?igsh=aXdrbzBwMWRvaG15&utm_source=qr&fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExYUt6TWN4TVlxbzBjSnNvWQEe4ITAVYQ0xAQUOpW-HT5ta2-SBmC7ElYQtRS8EFwTq6Mc1Y9sp9VrMZq7HIg_aem_U_kXrbUw08yKOoai9I-5pQ" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="http://www.tiktok.com/@__tmbng?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExYUt6TWN4TVlxbzBjSnNvWQEe80bxqbv2xBRZ7WPWoxqLSMMR3uGYVNsjLfwdEBZ3AkLxS4csdKECjyqO4bk_aem_cpumoyhPONnKE0WA1VNYeQ" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-detail" id="portfolio-4">
+                    <h3>Sean Harry B. Cepedoza</h3>
+                    <span class="role-badge">Member</span>
+                    <div class="intro-content">
+                        <div class="intro-picture-container">
+                            <img src="Cepedoza.jpeg" alt="Profile picture of Sean Harry B. Cepedoza">
+                        </div>
+                        <div class="intro-text-content">
+                            <p>I'm Sean Harry B. Cepedoza, and I'm glad to be a Member contributing to our portfolio. I enjoy both online gaming and outdoor sports like volleyball.</p>
+                        </div>
+                    </div>
+                    <h4>My Hobbies, Interests, and Skills</h4>
+                    <ul>
+                        <li>Playing online games</li>
+                        <li>Playing Volleyball</li>
+                        <li>Singing</li>
+                        <li>Sleeping</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/15qVpKk4v9/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/nshr_kai?igsh=MTE2MXhlbzE2NDNmcw%3D%3D&fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExYUt6TWN4TVlxbzBjSnNvWQEeIKQiP97Ooob6GESBJmmTg8SuhcdAsy6TjeRpMVGo-ibaF1xyJArYYAK-CIc_aem_AjAHo6ZYXQlMGPN7YOEIbw" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@nashiro011?_t=ZS-90ydnp8DyNO&_r=1&fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExYUt6TWN4TVlxbzBjSnNvWQEe80bxqbv2xBRZ7WPWoxqLSMMR3uGYVNsjLfwdEBZ3AkLxS4csdKECjyqO4bk_aem_f_I12-cebyc3KY9Mio5TJg" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-detail" id="portfolio-5">
+                    <h3>Kian Ashley Caoile</h3>
+                    <span class="role-badge">Member</span>
+                    <div class="intro-content">
+                        <div class="intro-picture-container">
+                            <img src="kian.jpeg" alt="Profile picture of Kian Ashley Caoile">
+                        </div>
+                        <div class="intro-text-content">
+                            <p>I am Kian Ashley Caoile, and I am here as a core  Member. My interests include sports like volleyball and spending time on music and gaming.</p>
+                        </div>
+                    </div>
+                    <h4>My Hobbies, Interests, and Skills</h4>
+                    <ul>
+                        <li>Playing online games</li>
+                        <li>Playing volleyball</li>
+                        <li>Singing </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/19ESGpyGX8/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/kianc_aoile?igsh=NGRvcWxkbTJvZnVh&fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExUHZla1czSVdCQkYzbHFnbgEefaUBUyDmB7DqVtuFUs1SLCe7ybPXP2swpRYv6IwYbbOQbvYe-taxinzQwuQ_aem_iNTAIlt-J7HDVNP0xyeHxg" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@paraknino?_t=ZS-90ydZFgxTlM&_r=1&fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExUHZla1czSVdCQkYzbHFnbgEefaUBUyDmB7DqVtuFUs1SLCe7ybPXP2swpRYv6IwYbbOQbvYe-taxinzQwuQ_aem_iNTAIlt-J7HDVNP0xyeHxg" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageToggle = document.getElementById('page-toggle');
+            const mainPage = document.querySelector('.main-page');
+            const memberListPage = document.querySelector('.member-list-page');
+            const memberCards = document.querySelectorAll('.member-card');
+            const portfolioDetails = document.querySelectorAll('.portfolio-detail');
+            const initialPrompt = document.getElementById('initial-prompt');
+
+            // --- Function to handle showing the portfolio ---
+            function showPortfolio(memberId) {
+                // 1. Hide the initial prompt
+                initialPrompt.style.display = 'none';
+
+                // 2. Remove active state from all cards and details
+                memberCards.forEach(card => card.classList.remove('active'));
+                portfolioDetails.forEach(detail => detail.classList.remove('active'));
+
+                // 3. Set the current member's card to active
+                const activeCard = document.querySelector(`.member-card[data-member-id="${memberId}"]`);
+                if (activeCard) {
+                    activeCard.classList.add('active');
+                }
+
+                // 4. Show the corresponding portfolio detail
+                const activeDetail = document.getElementById(`portfolio-${memberId}`);
+                if (activeDetail) {
+                    activeDetail.classList.add('active');
+                }
+            }
+
+            // --- Event Listeners for Member Cards ---
+            memberCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const memberId = this.getAttribute('data-member-id');
+                    showPortfolio(memberId);
+                });
+            });
+
+            // --- Handle initial page load and toggling ---
+            pageToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    // Show member list page (Split View)
+                    mainPage.style.opacity = '0';
+                    mainPage.style.transform = 'translateY(-20px)';
+                    
+                    // Transition to the split view
+                    setTimeout(() => {
+                        mainPage.style.display = 'none';
+                        memberListPage.style.display = 'flex';
+                        setTimeout(() => {
+                            memberListPage.style.opacity = '1';
+                            memberListPage.style.transform = 'translateY(0)';
+                        }, 10);
+                    }, 600); // Wait for mainPage fade-out
+
+                } else {
+                    // Show main page (Landing View)
+                    memberListPage.style.opacity = '0';
+                    memberListPage.style.transform = 'translateY(20px)';
+                    
+                    // Transition back to the landing view
+                    setTimeout(() => {
+                        memberListPage.style.display = 'none';
+                        mainPage.style.display = 'flex';
+                        setTimeout(() => {
+                            mainPage.style.opacity = '1';
+                            mainPage.style.transform = 'translateY(0)';
+                        }, 10);
+                        
+                        // Clean up active state and reset view
+                        memberCards.forEach(card => card.classList.remove('active'));
+                        portfolioDetails.forEach(detail => detail.classList.remove('active'));
+                        
+                        // Ensure initial prompt is visible again
+                        initialPrompt.style.display = 'flex';
+
+                    }, 600); // Wait for memberListPage fade-out
+                }
+            });
+            
+        });
+    </script>
+</body>
+</html>
