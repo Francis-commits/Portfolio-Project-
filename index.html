@@ -1,512 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: #e0e0e0;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Team Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root{
+      /* core */
+      --bg-1: #000000;
+      --bg-2: #070707;
+      --panel: rgba(20,20,20,0.84);
+      --panel-2: rgba(14,14,14,0.66);
+      --text: #efece6;
+      --muted: #bdb7ad;
+      --muted-2: #d1c9bf;
+      --accent: #ffd166; /* gold */
+      --accent-2: #e6b800;
+      --accent-contrast: #0f0f0f; /* used on gold buttons */
+      --primary-blue: #70a1ff;
+      --border: rgba(255,255,255,0.04);
+      --card-bg-1: linear-gradient(135deg, #171717 0%, #241f1b 100%);
+      --card-bg-2: linear-gradient(45deg, #ffd166 0%, #e6b800 100%);
+      --shadow-strong: rgba(0,0,0,0.85);
+      --shadow-soft: rgba(0,0,0,0.45);
+      --glass: rgba(255,255,255,0.02);
+      --gold-overlay-opacity: 0.04; /* faint by default */
+    }
 
-        /* Scrollbar Styling (Kept) */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #2a2a2a; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; border: 2px solid #2a2a2a; }
-        ::-webkit-scrollbar-thumb:hover { background: #ffd166; }
+    /* Dark mode (explicit) - stronger blacks while keeping gold accents */
+    .dark {
+      --bg-1: #000000;
+      --bg-2: #050404;
+      --panel: rgba(8,8,8,0.88);
+      --panel-2: rgba(12,12,12,0.72);
+      --text: #fff8f2;
+      --muted: #cfc6b8;
+      --muted-2: #e5dcd0;
+      --accent: #ffd166;
+      --accent-2: #e6b800;
+      --accent-contrast: #070707;
+      --primary-blue: #70a1ff;
+      --border: rgba(255,255,255,0.04);
+      --card-bg-1: linear-gradient(135deg, #111010 0%, #221b18 100%);
+      --card-bg-2: linear-gradient(45deg, #ffd166 0%, #e6b800 100%);
+      --shadow-strong: rgba(0,0,0,0.9);
+      --shadow-soft: rgba(0,0,0,0.5);
+      --glass: rgba(255,255,255,0.02);
+      --gold-overlay-opacity: 0.16; /* stronger gold highlight for dark */
+    }
 
-        /* Sticky Navigation Bar */
-        .navbar {
-            background: linear-gradient(90deg, #1f1f1f 0%, #303030 100%);
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar .logo {
-            color: #ffd166;
-            font-family: 'Montserrat', sans-serif;
-            /* LOGO SIZE ADJUSTMENT: Changed from 1.8em to 1.4em */
-            font-size: 1.4em; 
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        }
+    /* Light mode tweaked: NOT white background — instead a soft charcoal / warm slate look */
+    .light{
+      /* Changed from bright white to a soft charcoal / warm-slate palette so "light" isn't a glaring white */
+      --bg-1: #26221f;      /* warm charcoal */
+      --bg-2: #312b28;      /* slightly lighter warm slate */
+      --panel: rgba(36,32,29,0.92);   /* panel slightly lighter than background */
+      --panel-2: rgba(42,38,35,0.88);
+      --text: #f6efe6;     /* light text for contrast on warm slate */
+      --muted: #c3b9ae;
+      --muted-2: #d6cdc2;
+      --accent: #ffd166;   /* keep gold accent */
+      --accent-2: #e6b800;
+      --accent-contrast: #1a1a1a;
+      --primary-blue: #9fbfff;
+      --border: rgba(255,209,102,0.06);
+      --card-bg-1: linear-gradient(135deg,#2a2623 0%,#372f2b 100%);
+      --card-bg-2: linear-gradient(45deg,#ffd166 0%,#e6b800 100%);
+      --shadow-strong: rgba(0,0,0,0.7);
+      --shadow-soft: rgba(0,0,0,0.38);
+      --gold-overlay-opacity: 0.08;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    /* --------------------------
+       Page layout & background
+       Combined black + gold background (layered)
+       -------------------------- */
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+    }
 
-        /* --- Main Page/Hero Section --- */
-        .main-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            text-align: center;
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-        }
-        .hero {
-            position: relative;
-            padding: 80px 30px;
-            background: rgba(30, 30, 30, 0.8);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
-            width: 100%;
-            max-width: 900px;
-            overflow: hidden;
-        }
-        .hero::before { 
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM0NjQ2NDYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMjAgMTEuMDk3di45MDNoLTEwdjItMkgwdjIuOTAzaDIwVjExLjA5N3pNMCgwdjQuOTAzaDIwdjItMjBIMHoiLz48L2c+PC9nPjwvc3ZnPg==');
-            opacity: 0.05;
-            z-index: -1;
-        }
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4em;
-            color: #ffd166;
-            margin-bottom: 25px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            letter-spacing: 1px;
-        }
-        .hero p {
-            font-size: 1.4em;
-            color: #c0c0c0;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-        }
-        .group-pic img {
-            width: 100%;
-            max-width: 700px;
-            height: 350px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
-            border: 4px solid #ffd166;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .group-pic img:hover {
-            transform: scale(1.03) rotate(1deg);
-            box-shadow: 0 20px 50px rgba(255, 209, 102, 0.6);
-        }
-        .meet-button {
-            display: inline-block;
-            margin: 30px auto;
-            padding: 18px 40px;
-            background: linear-gradient(45deg, #ffd166 0%, #e6b800 100%);
-            color: #1a1a1a;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.4em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255, 209, 102, 0.4);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        .meet-button:hover {
-            background: linear-gradient(45deg, #e6b800 0%, #ffd166 100%);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 25px rgba(255, 209, 102, 0.6);
-        }
+    body{
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
 
-        /* --- Page Toggle Logic (CSS + JS) --- */
-        input[type="checkbox"]#page-toggle { display: none; }
-        
-        .member-list-page {
-            display: none; /* Initially hidden, controlled by JS/CSS Toggle */
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-            width: 100%;
-            padding-top: 50px;
-            display: flex; /* Use flex when visible */
-            flex-direction: row; 
-            align-items: flex-start; 
-            gap: 20px;
-            min-height: 80vh; 
-        }
+      /* Combined black + gold background:
+         - Base: deep black linear gradient
+         - Two radial gold highlights (top-left, bottom-right)
+         - Very subtle diagonal sheen
+      */
+      background:
+        radial-gradient(420px 240px at 12% 18%, rgba(255,209,102,var(--gold-overlay-opacity)) 0%, transparent 12%),
+        radial-gradient(520px 360px at 86% 84%, rgba(255,200,85, calc(var(--gold-overlay-opacity) * 0.9)) 0%, transparent 14%),
+        linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      transition: background 260ms ease, color 260ms ease;
 
-        /* CSS for the toggle state */
-        input#page-toggle:not(:checked) ~ .main-page {
-            display: flex;
-        }
-        input#page-toggle:checked ~ .main-page {
-            opacity: 0;
-            transform: translateY(-20px);
-            pointer-events: none;
-            display: none;
-        }
-        input#page-toggle:checked ~ .member-list-page {
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* --- List and Portfolio Containers --- */
-        .member-list-container {
-            width: 35%; 
-            padding-right: 15px;
-            border-right: 1px solid #333;
-            max-height: 80vh; 
-            overflow-y: auto; 
-        }
-        .portfolio-detail-container {
-            width: 65%; 
-            padding: 20px;
-            background: rgba(30, 30, 30, 0.6);
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-            min-height: 70vh; 
-            position: relative; /* Container for absolute/stacked details */
-        }
+      /* make room so right-edge scrollbars don't overlap content in some browsers */
+      padding-inline-end: 12px;
+    }
 
-        /* Back Button (Adjusted position) */
-        .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #70a1ff 0%, #5c8ae8 100%);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            text-transform: uppercase;
-        }
-        .back-button:hover {
-            background: linear-gradient(45deg, #5c8ae8 0%, #70a1ff 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-        }
+    /* reduce sheen intensity so black remains deep */
+    body::after{
+      content: "";
+      position: fixed;
+      inset:0;
+      pointer-events:none;
+      background: repeating-linear-gradient(45deg, rgba(0,0,0,0.012) 0 2px, transparent 2px 10px);
+      opacity: 0.018;
+      mix-blend-mode: overlay;
+    }
 
-        /* Team Grid (Modified for List in Column) */
-        .team-grid {
-            display: flex;
-            flex-direction: column; 
-            gap: 15px;
-            margin-top: 50px; 
-        }
-        
-        /* Member Card for List (JS controls the active state) */
-        .member-card {
-            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
-            padding: 15px 20px; 
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            text-align: left; 
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background 0.3s ease;
-            display: block;
-            border: 1px solid #444444;
-        }
-        .member-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(255, 209, 102, 0.3);
-            border: 1px solid #ffd166;
-            background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
-        }
-        .member-card.active {
-            background: linear-gradient(45deg, #ffd166 0%, #e6b800 100%); 
-            color: #1a1a1a;
-            border-color: #ffd166;
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(255, 209, 102, 0.6);
-        }
-        .member-card.active h3 { color: #1a1a1a; }
-        .member-card.active p { color: #555555; }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(255,209,102,0.95), rgba(230,184,0,0.95));
+      border-radius: 10px;
+      border: 2px solid rgba(0,0,0,0.25);
+    }
+    ::-webkit-scrollbar-thumb:hover { filter: brightness(1.05); }
 
-        .member-card h3 {
-            color: #ffd166;
-            margin: 0;
-            font-size: 1.4em; 
-            font-family: 'Montserrat', sans-serif;
-            text-shadow: none;
-        }
-        .member-card p {
-            margin: 0;
-            color: #a0a0a0;
-            font-size: 0.9em;
-            font-weight: 500;
-        }
+    /* ----- NAVBAR ----- */
+    .navbar {
+      background: linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.28) 100%);
+      backdrop-filter: blur(6px);
+      padding: 18px 28px;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1200; /* increased to sit above glows */
+      box-shadow: 0 6px 22px rgba(0,0,0,0.75);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      padding-left: calc(28px + env(safe-area-inset-left));
+      padding-right: calc(28px + env(safe-area-inset-right));
+    }
+    .navbar .logo {
+      color: var(--accent);
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+      display: inline-block;
+      padding-left: 6px;
+      white-space: nowrap;
+      overflow: visible;
+      z-index: 1250;
+    }
 
-        /* --- Portfolio Detail Styling --- */
-        .portfolio-detail {
-            background: linear-gradient(135deg, #202020 0%, #303030 100%);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-            color: #e0e0e0;
-            border-top: 5px solid #ffd166;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            display: none; /* Hidden by default, absolute positioned to stack */
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: calc(100% - 40px);
-        }
-        /* JS adds the 'active' class to show the specific detail */
-        .portfolio-detail.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-            position: static; /* Takes up space when active */
-        }
+    /* theme toggle button */
+    .theme-toggle {
+      display:inline-grid;
+      place-items:center;
+      width:42px;
+      height:42px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(255,255,255,0.02));
+      color: var(--text);
+      cursor:pointer;
+      font-size:14px;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .theme-toggle:hover{ transform: translateY(-2px); box-shadow: 0 6px 18px var(--shadow-soft); }
+    .theme-toggle i { pointer-events:none; }
 
-        /* *** NEW: Flexbox container for picture and intro text *** */
-        .intro-content {
-            display: flex;
-            align-items: center; /* Vertically center image and text */
-            gap: 25px; /* Space between the image and text */
-            margin-bottom: 30px;
-            text-align: left; /* Align text to the left */
-        }
-        /* Style the image container within the flexbox */
-        .intro-picture-container {
-            flex-shrink: 0; /* Prevents the image from shrinking */
-            text-align: center;
-        }
-        /* Style the text content next to the image */
-        .intro-text-content {
-            flex-grow: 1; /* Allows the text to take up the remaining space */
-        }
-        /* Update the detail image for side-by-side layout */
-        .portfolio-detail img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0; /* Remove top/bottom margin */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            border: 4px solid #ffd166;
-            object-fit: cover;
-            display: block;
-        }
-        /* Update the detail header alignment */
-        .portfolio-detail h3 {
-            text-align: center;
-        }
-        .role-badge { 
-            display: inline-block;
-            background: linear-gradient(45deg, #007bff 0%, #0056b3 100%);
-            color: white;
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-size: 0.95em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
-        }
-        
-        /* Remaining detail styles */
-        .portfolio-detail h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: #70a1ff;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-            border-bottom: 2px solid rgba(112, 161, 255, 0.3);
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-        .portfolio-detail ul {
-            text-align: left;
-            margin: 15px auto;
-            padding-left: 30px;
-            color: #b0b0b0;
-            list-style: none;
-            max-width: 400px;
-        }
-        .portfolio-detail ul li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 8px;
-            font-size: 1.05em;
-        }
-        .portfolio-detail ul li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #ffd166;
-            font-size: 0.8em;
-            top: 2px;
-        }
-        .social-links {
-            margin-top: 30px;
-        }
-        .social-links a {
-            display: inline-block;
-            margin: 0 12px;
-            color: #ffd166;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease, transform 0.3s ease;
-            font-size: 1.8em;
-        }
-        .social-links a:hover {
-            color: #70a1ff;
-            transform: scale(1.2);
-        }
-        
-        /* --- NEW: Initial Prompt Styling (Kept) --- */
-        .initial-prompt {
-            padding: 50px 20px;
-            text-align: center;
-            color: #a0a0a0;
-            border: 2px dashed #444;
-            border-radius: 10px;
-            margin-top: 50px;
-            background: #1f1f1f;
-            min-height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 1; /* Default state */
-            transition: opacity 0.4s ease;
-        }
-        .initial-prompt h2 {
-            color: #ffd166;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-        
-        /* Responsive Design Adjustments for Split View */
-        @media (max-width: 992px) {
-            .member-list-page { 
-                flex-direction: column; 
-            }
-            .member-list-container, .portfolio-detail-container {
-                width: 100%; 
-                border-right: none;
-                padding-right: 0;
-            }
-            .member-list-container {
-                max-height: 40vh; 
-                margin-bottom: 20px;
-            }
-            .portfolio-detail-container {
-                min-height: auto;
-            }
-            .portfolio-detail {
-                position: static; /* Reset absolute positioning on mobile */
-                width: 100%;
-                left: 0;
-                top: 0;
-            }
-            .portfolio-detail.active {
-                position: static; 
-            }
-            /* Stack the intro picture and text on smaller screens */
-            .intro-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .intro-text-content p {
-                text-align: center;
-            }
-        }
-    </style>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-left: max(20px, env(safe-area-inset-left));
+      padding-right: max(20px, env(safe-area-inset-right));
+      box-sizing: border-box;
+    }
+
+    /* --- Main Page/Hero Section --- */
+    .main-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    }
+    .hero {
+      position: relative;
+      padding: 42px 26px;                 /* tightened padding for better top fit */
+      background: linear-gradient(180deg, rgba(0,0,0,0.62), rgba(10,10,10,0.85));
+      border-radius: 18px;
+      margin-bottom: 50px;
+      box-shadow: 0 18px 42px rgba(0,0,0,0.7);
+      width: 100%;
+      max-width: 980px;
+      overflow: hidden;
+      border: 1px solid rgba(255,209,102,0.06);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM0NjQ2NDYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMjAgMTEuMDk3di45MDNoLTEwdjItMkgwdjIuOTAzaDIwVjExLjA5N3pNMCgwdjQuOTAzaDIwdjItMjBIMHoiLz48L2c+PC9nPjwvc3ZnPg==');
+      opacity: 0.04;
+      z-index: -1;
+      mix-blend-mode: overlay;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.8rem, 4.6vw, 2.8rem);
+      color: var(--accent);
+      margin-bottom: 18px;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+      letter-spacing: 1px;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted-2);
+      max-width: 700px;
+      margin: 0 auto 22px auto;
+    }
+
+    .group-pic {
+      margin-top: 16px;
+      width: 100%;
+      max-width: 900px;
+      padding: 6px; /* small warm padding around image */
+      box-sizing: border-box;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(255,209,102,0.03), rgba(255,209,102,0.01));
+      box-shadow: 0 20px 44px rgba(0,0,0,0.65);
+    }
+
+    .group-pic img {
+      display: block;
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: 50% 36%;
+      border-radius: 12px;
+      border: 3px solid var(--accent); /* thinner gold ring */
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .group-pic img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    }
+
+    .meet-button {
+      display: inline-block;
+      margin: 30px auto;
+      padding: 14px 36px;
+      background: linear-gradient(45deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: var(--accent-contrast);
+      border: none;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(255,209,102,0.25);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .meet-button:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 14px 32px rgba(255,209,102,0.35);
+    }
+
+    /* --- Page Toggle Logic (CSS + JS) --- */
+    input[type="checkbox"]#page-toggle { display: none; }
+
+    .member-list-page {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+      width: 100%;
+      padding-top: 50px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 20px;
+      min-height: 80vh;
+    }
+
+    input#page-toggle:not(:checked) ~ .main-page { display:flex; }
+    input#page-toggle:checked ~ .main-page {
+      opacity:0;
+      transform:translateY(-20px);
+      pointer-events:none;
+      display:none;
+    }
+    input#page-toggle:checked ~ .member-list-page {
+      display:flex;
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* --- List and Portfolio Containers --- */
+    .member-list-container {
+      width: 35%;
+      padding-right: 15px;
+      border-right: 1px solid var(--border);
+      max-height: 80vh;
+      overflow-y: auto;
+      max-width: 360px;
+    }
+    .portfolio-detail-container {
+      width: 65%;
+      padding: 20px;
+      background: var(--panel-2);
+      border-radius: 15px;
+      box-shadow: 0 5px 20px var(--shadow-strong);
+      min-height: 70vh;
+      position: relative;
+    }
+
+    /* Back Button */
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, rgba(112,161,255,0.95) 0%, rgba(92,138,232,0.95) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 10;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+      text-transform: uppercase;
+    }
+    .back-button:hover { transform: translateY(-3px); }
+
+    .team-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 50px;
+    }
+
+    .member-card {
+      background: var(--card-bg-1);
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px var(--shadow-soft);
+      text-align: left;
+      cursor: pointer;
+      transition: transform .22s ease, box-shadow .22s ease, border .22s ease, background .22s ease;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.02);
+      min-height: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .member-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(255,209,102,0.18);
+      border: 1px solid var(--accent);
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+    .member-card.active {
+      background: var(--card-bg-2);
+      color: var(--accent-contrast);
+      border-color: var(--accent);
+      transform: scale(1.02);
+      box-shadow: 0 12px 36px rgba(255,209,102,0.48);
+    }
+    .member-card.active h3 { color: var(--accent-contrast); }
+    .member-card.active p { color: rgba(0,0,0,0.55); }
+
+    .member-card h3 {
+      color: var(--accent);
+      margin: 0;
+      font-size: 1.04rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .member-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+
+    .portfolio-detail {
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px var(--shadow-strong);
+      color: var(--text);
+      border-top: 5px solid var(--accent);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: calc(100% - 40px);
+    }
+    .portfolio-detail.active {
+      display:block;
+      opacity:1;
+      transform:translateY(0);
+      position: static;
+    }
+
+    .intro-content {
+      display:flex;
+      align-items:center;
+      gap:25px;
+      margin-bottom:20px;
+      text-align:left;
+    }
+    .intro-picture-container { flex-shrink:0; text-align:center; }
+    .intro-text-content { flex-grow:1; }
+    .portfolio-detail img {
+      width:150px;height:150px;border-radius:50%;
+      margin:0;box-shadow:0 8px 25px var(--shadow-soft);
+      border:3px solid var(--accent);object-fit:cover;display:block;
+    }
+    .portfolio-detail h3 { text-align:center; margin-top:0; }
+    .role-badge {
+      display:inline-block;
+      background: linear-gradient(45deg, #007bff 0%, #0056b3 100%);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.95em;
+      font-weight: bold;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      box-shadow: 0 4px 10px rgba(0,123,255,0.2);
+    }
+
+    .portfolio-detail h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary-blue);
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+      border-bottom: 2px solid rgba(112,161,255,0.18);
+      padding-bottom: 5px;
+      display:inline-block;
+    }
+    .portfolio-detail ul {
+      text-align:left;
+      margin: 12px auto;
+      padding-left:30px;
+      color: var(--muted-2);
+      list-style:none;
+      max-width:460px;
+    }
+    .portfolio-detail ul li {
+      position: relative;
+      padding-left:25px;
+      margin-bottom:8px;
+      font-size:1.02em;
+    }
+    .portfolio-detail ul li::before{
+      content:'•';
+      position:absolute;left:0;color:var(--accent);font-size:.9em;top:2px;
+    }
+
+    .social-links { margin-top: 20px; }
+    .social-links a {
+      display:inline-block;margin:0 12px;color:var(--accent);text-decoration:none;font-weight:bold;
+      transition: color .2s ease, transform .2s ease;font-size:1.6em;
+    }
+    .social-links a:hover { color: var(--primary-blue); transform: scale(1.2); }
+
+    .initial-prompt {
+      padding: 40px 20px;
+      text-align:center;
+      color: var(--muted);
+      border: 2px dashed rgba(255,255,255,0.04);
+      border-radius:10px;
+      margin-top:50px;
+      background: var(--panel);
+      min-height: 50vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      opacity:1;
+      transition:opacity .4s ease;
+    }
+    .initial-prompt h2 {
+      color: var(--accent);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom:8px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .member-list-page { flex-direction: column; }
+      .member-list-container, .portfolio-detail-container {
+        width: 100%;
+        border-right: none;
+        padding-right: 0;
+      }
+      .member-list-container { max-height: 40vh; margin-bottom: 20px; }
+      .portfolio-detail-container { min-height: auto; }
+      .portfolio-detail { position: static; width: 100%; left: 0; top: 0; }
+      .portfolio-detail.active { position: static; }
+      .intro-content { flex-direction: column; text-align: center; }
+      .intro-text-content p { text-align:center; }
+      h1 { font-size: 2.2rem; }
+      .group-pic img { height: 260px; }
+      .navbar { padding-left: 14px; padding-right: 14px; }
+      .navbar .logo { font-size: 1.1rem; }
+      .hero { padding: 28px 16px; }
+    }
+
+    /* Accessibility: visible focus outlines */
+    .theme-toggle:focus, .meet-button:focus, .back-button:focus, .member-card:focus {
+      outline: 3px solid rgba(255,209,102,0.14);
+      outline-offset: 4px;
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">   Group 6 Portfolio</div>
-    </nav>
-    <div class="container">
-        <input type="checkbox" id="page-toggle">
-        
-        <div class="main-page">
-            <section class="hero">
-                <h1>Welcome to Our Group Portfolio</h1>
-                <p>Hello! We are Group 6. This webpage highlights our talented team members and what makes us unique.</p>
-            </section>
-            
-            <section class="group-pic">
-                <img src="group.jpeg" alt="Combined group photo of the team">
-            </section>
-            
-            <label for="page-toggle" class="meet-button">Meet Our Members</label>
-        </div>
-        
-        <div class="member-list-page">
-            <label for="page-toggle" class="back-button"><i class="fas fa-arrow-left"></i> Back</label>
-            
-            <div class="member-list-container">
-                <div class="team-grid">
-                    
-                    <div class="member-card" data-member-id="1">
-                        <h3>Francis C. Erosa</h3>
-                        <p>Leader</p>
-                    </div>
-                    
-                    <div class="member-card" data-member-id="2">
-                        <h3>Marc Simon D. Naoe</h3>
-                        <p>Member</p>
-                    </div>
-                    
-                    <div class="member-card" data-member-id="3">
-                        <h3>Francis Dispo</h3>
-                        <p>Member</p>
-                    </div>
-                    
-                    <div class="member-card" data-member-id="4">
-                        <h3>Sean Harry B. Cepedoza</h3>
-                        <p>Member</p>
-                    </div>
+  <nav class="navbar">
+    <div class="logo">Group 6 Portfolio</div>
 
-                    <div class="member-card" data-member-id="5">
-                        <h3>Kian Ashley Caoile</h3>
-                        <p>Member</p>
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="portfolio-detail-container">
-                
+    <!-- Theme toggle button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+      <i id="theme-icon" class="fas fa-sun"></i>
+    </button>
+  </nav>
+
+  <div class="container">
+    <input type="checkbox" id="page-toggle">
+
+    <div class="main-page">
+      <section class="hero">
+        <h1>Welcome to Our Group Portfolio</h1>
+        <p>Hello! We are Group 6. This webpage highlights our talented team members and what makes us unique.</p>
+      </section>
+
+      <section class="group-pic">
+        <img src="group.jpeg" alt="Combined group photo of the team">
+      </section>
+
+      <label for="page-toggle" class="meet-button">Meet Our Members</label>
+    </div>
+
+    <div class="member-list-page">
+      <label for="page-toggle" class="back-button"><i class="fas fa-arrow-left"></i> Back</label>
+
+      <div class="member-list-container">
+        <div class="team-grid">
+
+          <div class="member-card" data-member-id="1">
+            <h3>Francis C. Erosa</h3>
+            <p>Leader</p>
+          </div>
+
+          <div class="member-card" data-member-id="2">
+            <h3>Marc Simon D. Naoe</h3>
+            <p>Member</p>
+          </div>
+
+          <div class="member-card" data-member-id="3">
+            <h3>Francis Dispo</h3>
+            <p>Member</p>
+          </div>
+
+          <div class="member-card" data-member-id="4">
+            <h3>Sean Harry B. Cepedoza</h3>
+            <p>Member</p>
+          </div>
+
+          <div class="member-card" data-member-id="5">
+            <h3>Kian Ashley Caoile</h3>
+            <p>Member</p>
+          </div>
+
+        </div>
+      </div>
+
+         <div class="portfolio-detail-container">
+
                 <div class="initial-prompt" id="initial-prompt">
                     <h2>👈 Select a Member to View their Portfolio</h2>
                     <p>Click any member's name from the list on the left to display their details here.</p>
@@ -611,7 +714,7 @@
                         <a href="https://www.tiktok.com/@nashiro011?_t=ZS-90ydnp8DyNO&_r=1&fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExYUt6TWN4TVlxbzBjSnNvWQEe80bxqbv2xBRZ7WPWoxqLSMMR3uGYVNsjLfwdEBZ3AkLxS4csdKECjyqO4bk_aem_f_I12-cebyc3KY9Mio5TJg" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="portfolio-detail" id="portfolio-5">
                     <h3>Kian Ashley Caoile</h3>
                     <span class="role-badge">Member</span>
@@ -620,7 +723,7 @@
                             <img src="kian.jpeg" alt="Profile picture of Kian Ashley Caoile">
                         </div>
                         <div class="intro-text-content">
-                            <p>I am Kian Ashley Caoile, and I am here as a core  Member. My interests include sports like volleyball and spending time on music and gaming.</p>
+                            <p>I am Kian Ashley Caoile, and I am here as a core  Member. My interests include sports like volleyball and spending time on music and gaming.</p>
                         </div>
                     </div>
                     <h4>My Hobbies, Interests, and Skills</h4>
@@ -640,88 +743,113 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const pageToggle = document.getElementById('page-toggle');
-            const mainPage = document.querySelector('.main-page');
-            const memberListPage = document.querySelector('.member-list-page');
-            const memberCards = document.querySelectorAll('.member-card');
-            const portfolioDetails = document.querySelectorAll('.portfolio-detail');
-            const initialPrompt = document.getElementById('initial-prompt');
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const pageToggle = document.getElementById('page-toggle');
+      const mainPage = document.querySelector('.main-page');
+      const memberListPage = document.querySelector('.member-list-page');
+      const memberCards = document.querySelectorAll('.member-card');
+      const portfolioDetails = document.querySelectorAll('.portfolio-detail');
+      const initialPrompt = document.getElementById('initial-prompt');
 
-            // --- Function to handle showing the portfolio ---
-            function showPortfolio(memberId) {
-                // 1. Hide the initial prompt
-                initialPrompt.style.display = 'none';
+      // Theme toggle elements
+      const themeBtn = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const rootEl = document.documentElement;
 
-                // 2. Remove active state from all cards and details
-                memberCards.forEach(card => card.classList.remove('active'));
-                portfolioDetails.forEach(detail => detail.classList.remove('active'));
+      // --- Theme handling ---
+      function applyThemeClass(theme) {
+        rootEl.classList.remove('dark','light');
+        if (theme === 'dark') rootEl.classList.add('dark');
+        else if (theme === 'light') rootEl.classList.add('light');
 
-                // 3. Set the current member's card to active
-                const activeCard = document.querySelector(`.member-card[data-member-id="${memberId}"]`);
-                if (activeCard) {
-                    activeCard.classList.add('active');
-                }
+        if (theme === 'dark') {
+          themeIcon.className = 'fas fa-sun';
+          themeBtn.title = 'Switch to light theme';
+        } else {
+          themeIcon.className = 'fas fa-moon';
+          themeBtn.title = 'Switch to dark theme';
+        }
+      }
 
-                // 4. Show the corresponding portfolio detail
-                const activeDetail = document.getElementById(`portfolio-${memberId}`);
-                if (activeDetail) {
-                    activeDetail.classList.add('active');
-                }
-            }
+      function getPreferredTheme() {
+        const stored = localStorage.getItem('theme-mode');
+        if (stored === 'dark' || stored === 'light') return stored;
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
 
-            // --- Event Listeners for Member Cards ---
-            memberCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const memberId = this.getAttribute('data-member-id');
-                    showPortfolio(memberId);
-                });
-            });
+      // initialize theme (prefer dark look by default)
+      const initialTheme = getPreferredTheme();
+      applyThemeClass(initialTheme);
 
-            // --- Handle initial page load and toggling ---
-            pageToggle.addEventListener('change', function() {
-                if (this.checked) {
-                    // Show member list page (Split View)
-                    mainPage.style.opacity = '0';
-                    mainPage.style.transform = 'translateY(-20px)';
-                    
-                    // Transition to the split view
-                    setTimeout(() => {
-                        mainPage.style.display = 'none';
-                        memberListPage.style.display = 'flex';
-                        setTimeout(() => {
-                            memberListPage.style.opacity = '1';
-                            memberListPage.style.transform = 'translateY(0)';
-                        }, 10);
-                    }, 600); // Wait for mainPage fade-out
+      themeBtn.addEventListener('click', function() {
+        const current = rootEl.classList.contains('dark') ? 'dark' : (rootEl.classList.contains('light') ? 'light' : getPreferredTheme());
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyThemeClass(next);
+        try { localStorage.setItem('theme-mode', next); } catch (e) {}
+      });
 
-                } else {
-                    // Show main page (Landing View)
-                    memberListPage.style.opacity = '0';
-                    memberListPage.style.transform = 'translateY(20px)';
-                    
-                    // Transition back to the landing view
-                    setTimeout(() => {
-                        memberListPage.style.display = 'none';
-                        mainPage.style.display = 'flex';
-                        setTimeout(() => {
-                            mainPage.style.opacity = '1';
-                            mainPage.style.transform = 'translateY(0)';
-                        }, 10);
-                        
-                        // Clean up active state and reset view
-                        memberCards.forEach(card => card.classList.remove('active'));
-                        portfolioDetails.forEach(detail => detail.classList.remove('active'));
-                        
-                        // Ensure initial prompt is visible again
-                        initialPrompt.style.display = 'flex';
-
-                    }, 600); // Wait for memberListPage fade-out
-                }
-            });
-            
+      if (!localStorage.getItem('theme-mode')) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+          const pref = e.matches ? 'dark' : 'light';
+          applyThemeClass(pref);
         });
-    </script>
+      }
+
+      // --- Function to handle showing the portfolio ---
+      function showPortfolio(memberId) {
+        initialPrompt.style.display = 'none';
+
+        memberCards.forEach(card => card.classList.remove('active'));
+        portfolioDetails.forEach(detail => detail.classList.remove('active'));
+
+        const activeCard = document.querySelector(`.member-card[data-member-id="${memberId}"]`);
+        if (activeCard) activeCard.classList.add('active');
+
+        const activeDetail = document.getElementById(`portfolio-${memberId}`);
+        if (activeDetail) activeDetail.classList.add('active');
+      }
+
+      // --- Event Listeners for Member Cards ---
+      memberCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const memberId = this.getAttribute('data-member-id');
+          showPortfolio(memberId);
+        });
+      });
+
+      // --- Handle initial page load and toggling ---
+      pageToggle.addEventListener('change', function() {
+        if (this.checked) {
+          mainPage.style.opacity = '0';
+          mainPage.style.transform = 'translateY(-20px)';
+          setTimeout(() => {
+            mainPage.style.display = 'none';
+            memberListPage.style.display = 'flex';
+            setTimeout(() => {
+              memberListPage.style.opacity = '1';
+              memberListPage.style.transform = 'translateY(0)';
+            }, 10);
+          }, 480);
+        } else {
+          memberListPage.style.opacity = '0';
+          memberListPage.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            memberListPage.style.display = 'none';
+            mainPage.style.display = 'flex';
+            setTimeout(() => {
+              mainPage.style.opacity = '1';
+              mainPage.style.transform = 'translateY(0)';
+            }, 10);
+            memberCards.forEach(card => card.classList.remove('active'));
+            portfolioDetails.forEach(detail => detail.classList.remove('active'));
+            initialPrompt.style.display = 'flex';
+          }, 480);
+        }
+      });
+
+    });
+  </script>
 </body>
+
 </html>
